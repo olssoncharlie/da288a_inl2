@@ -24,7 +24,7 @@ $router->get('/products/{id}', 'ProductsController@show');
 $router->post('/products', 'ProductsController@create');
 
 // Store routes
-$router->get('/stores', 'Controller');
+$router->get('/stores', 'StoresController@index');
 
 // Review routes 
-$router->get('/reviews', 'Controller');
+$router->get('/reviews', 'ReviewsController@index');
