@@ -27,6 +27,8 @@ class ProductsController extends Controller
 
     public function show($id){
         $product = Product::find($id);
+        $product->reviews = Product::find($id)->getReviews();
+        $product->stores = Product::find($id)->getStores();
         return response()->json($product);
     }
 
