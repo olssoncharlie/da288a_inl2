@@ -34,14 +34,23 @@ class ProductsController extends Controller
 
     public function create(Request $request){
         $product = new Product;
+        // Inputs
         $product->title = $request->input("title");
         $product->brand = $request->input("brand");
         $product->image = $request->input("image");
         $product->description = $request->input("description");
         $product->price = $request->input("price");
-        $product->save();
 
-        return response()->json($product);
+        $stores = $request->input("stores");
+        // Important to save BEFORE saving to pivot table
+        $product->save();
+        
+        // Save to pivot table
+        foreach ($stores as $store) {
+            $product->stores()->attach($store);
+        }
+        $response = (object) ["Success" => true];
+        return json_encode($response);
     }
 
 }
