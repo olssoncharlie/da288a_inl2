@@ -49,7 +49,8 @@ class ProductsController extends Controller
         foreach ($stores as $store) {
             $product->stores()->attach($store);
         }
-        $response = (object) ["Success" => true];
+
+        $response = (object) ["success" => true];
         return json_encode($response);
     }
 
